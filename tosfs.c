@@ -12,6 +12,17 @@ void print_filesystem_info(struct tosfs_superblock *superblock) {
     printf("Total Blocks: %u\n", superblock->blocks);
     printf("Total Inodes: %u\n", superblock->inodes);
     printf("Root Inode: %u\n", superblock->root_inode);
+       printf("Bitmap des blocs: \n");
+    for (int i = 0; i < 32; i++) {
+        printf(PRINTF_BINARY_PATTERN_INT32 "\n", PRINTF_BYTE_TO_BINARY_INT32(superblock->block_bitmap));
+    }
+    printf("\n");
+
+    printf("Bitmap des inodes: \n");
+    for (int i = 0; i < 32; i++) {
+        printf(PRINTF_BINARY_PATTERN_INT32 "\n", PRINTF_BYTE_TO_BINARY_INT32(superblock->inode_bitmap));
+    }
+    printf("\n");
 }
 
 int main(int argc, char *argv[]) {
